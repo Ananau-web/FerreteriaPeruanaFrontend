@@ -8,7 +8,6 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProveedorService {
-  // Concatena la ruta base con el endpoint específico de tu backend
   private apiUrl = `${environment.url}/proveedor`;
 
   constructor(private http: HttpClient) { }

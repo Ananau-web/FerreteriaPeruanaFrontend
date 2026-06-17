@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class LineaProductoService {
-  // Fíjate que en tu backend le pusiste todo junto: lineaproducto
+  
   private apiUrl = `${environment.url}/lineaproducto`; 
 
   constructor(private http: HttpClient) { }

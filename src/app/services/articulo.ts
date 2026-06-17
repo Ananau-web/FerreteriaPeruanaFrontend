@@ -14,7 +14,6 @@ export class ArticuloService {
 
   constructor(private http: HttpClient) { }
 
-  // ── Artículos ──────────────────────────────────────────────────
   getArticulos(): Observable<Articulo[]> {
     return this.http.get<Articulo[]>(this.apiUrl);
   }
@@ -27,7 +26,6 @@ export class ArticuloService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  // ── Líneas de Producto ─────────────────────────────────────────
   getLineasProducto(): Observable<LineaProducto[]> {
     return this.http.get<LineaProducto[]>(this.apiLinea);
   }
