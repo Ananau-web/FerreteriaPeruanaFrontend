@@ -1,0 +1,44 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Registrar Nuevo Proveedor</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="proveedorForm" (ngSubmit)="onSubmit()">
+
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Razón Social o Nombre:</label>
+              <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Ej: Aceros Arequipa"
+                [ngClass]="{
+                  'is-valid': proveedorForm.get('nombre')?.valid && proveedorForm.get('nombre')?.touched,
+                  'is-invalid': proveedorForm.get('nombre')?.invalid && proveedorForm.get('nombre')?.touched
+                }">
+              <div class="invalid-feedback">
+                El nombre es obligatorio.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="ruc" class="form-label">RUC (11 dígitos):</label>
+              <input type="text" id="ruc" class="form-control" formControlName="ruc" placeholder="Ej: 20100000000"
+                [ngClass]="{
+                  'is-valid': proveedorForm.get('ruc')?.valid && proveedorForm.get('ruc')?.touched,
+                  'is-invalid': proveedorForm.get('ruc')?.invalid && proveedorForm.get('ruc')?.touched
+                }">
+              <div class="invalid-feedback">
+                Ingresa un RUC válido de 11 números.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="proveedorForm.invalid">
+              Guardar Proveedor
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
