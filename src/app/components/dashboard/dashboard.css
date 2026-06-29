@@ -1,0 +1,157 @@
+/* ================================================================
+   DASHBOARD — ESTILOS
+   ================================================================ */
+
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ------- Header ------- */
+.dash-header {
+  margin-bottom: 32px;
+}
+
+.dash-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--fp-text-primary);
+  margin: 0 0 4px;
+}
+
+.dash-name {
+  color: var(--fp-primary);
+}
+
+.dash-date {
+  font-size: 13px;
+  color: var(--fp-text-secondary);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+/* ------- Grid ------- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ------- Card ------- */
+.dash-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.dash-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dash-card.disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.dash-card.disabled:hover {
+  transform: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Acento superior */
+.dash-card-accent {
+  height: 4px;
+  width: 100%;
+}
+
+.dash-card-body {
+  padding: 24px;
+  position: relative;
+}
+
+/* Ícono */
+.dash-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+/* Texto */
+.dash-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fp-text-primary);
+  margin: 0 0 8px;
+}
+
+.dash-card-desc {
+  font-size: 12.5px;
+  color: var(--fp-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Badge "Próximamente" */
+.dash-card-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 14px;
+  background: rgba(255, 143, 0, 0.1);
+  color: #e65100;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Flecha */
+.dash-card-arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--fp-bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fp-text-secondary);
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.dash-card:hover .dash-card-arrow {
+  background: var(--fp-primary);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* ------- Responsive ------- */
+@media (max-width: 992px) {
+  .dash-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-title {
+    font-size: 22px;
+  }
+}

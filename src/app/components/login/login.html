@@ -1,0 +1,137 @@
+<div class="login-page">
+  <!-- Fondo animado -->
+  <div class="login-bg">
+    <div class="login-bg-shape shape-1"></div>
+    <div class="login-bg-shape shape-2"></div>
+    <div class="login-bg-shape shape-3"></div>
+  </div>
+
+  <!-- Card de Login -->
+  <div class="login-container animate-fade-in-up">
+    <div class="login-card">
+
+      <!-- Header -->
+      <div class="login-header">
+        <div class="login-icon">
+          <i class="bi bi-tools"></i>
+        </div>
+        <h1 class="login-title">Ferretería Peruana</h1>
+        <p class="login-subtitle">Sistema de Gestión Logística</p>
+      </div>
+
+      <!-- Zona de error -->
+      <div *ngIf="errorMsg" class="login-error animate-fade-in-up">
+        <i class="bi bi-exclamation-circle me-2"></i>
+        {{ errorMsg }}
+      </div>
+
+      <!-- Formulario -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+
+        <!-- Campo Usuario -->
+        <div class="login-field">
+          <label for="username" class="login-label">Usuario</label>
+          <div class="input-group">
+            <span class="input-group-text login-input-icon">
+              <i class="bi bi-person"></i>
+            </span>
+            <input
+              type="text"
+              id="username"
+              class="form-control login-input"
+              formControlName="username"
+              placeholder="Ingresa tu usuario"
+              autocomplete="username"
+              [ngClass]="{
+                'is-invalid': loginForm.get('username')?.invalid && loginForm.get('username')?.touched
+              }">
+          </div>
+          <div class="invalid-feedback d-block" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+            El usuario es obligatorio.
+          </div>
+        </div>
+
+        <!-- Campo Contraseña -->
+        <div class="login-field">
+          <label for="password" class="login-label">Contraseña</label>
+          <div class="input-group">
+            <span class="input-group-text login-input-icon">
+              <i class="bi bi-lock"></i>
+            </span>
+            <input
+              [type]="mostrarPassword ? 'text' : 'password'"
+              id="password"
+              class="form-control login-input"
+              formControlName="password"
+              placeholder="Ingresa tu contraseña"
+              autocomplete="current-password"
+              [ngClass]="{
+                'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+              }">
+            <button
+              type="button"
+              class="btn login-eye-btn"
+              (click)="togglePassword()"
+              tabindex="-1"
+              title="Mostrar/ocultar contraseña">
+              <i class="bi" [ngClass]="mostrarPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
+          <div class="invalid-feedback d-block" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            La contraseña es obligatoria.
+          </div>
+        </div>
+
+        <!-- Botón Ingresar -->
+        <button
+          type="submit"
+          class="btn btn-primary login-btn w-100"
+          [disabled]="cargando">
+          <span *ngIf="!cargando">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
+          </span>
+          <span *ngIf="cargando">
+            <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+            Verificando...
+          </span>
+        </button>
+      </form>
+
+      <!-- Enlace recuperación -->
+      <div class="login-footer">
+        <a href="javascript:void(0)" class="login-forgot" (click)="abrirRecuperacion()">
+          <i class="bi bi-question-circle me-1"></i>
+          ¿Olvidaste tu contraseña?
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Créditos -->
+    <p class="login-credits">
+      © 2026 Ferretería Peruana SA — CC341 Ingeniería de Software
+    </p>
+  </div>
+</div>
+
+<!-- Modal Recuperar Contraseña -->
+<div class="modal fade" [class.show]="mostrarRecuperacion" [style.display]="mostrarRecuperacion ? 'block' : 'none'"
+     tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-body text-center p-4">
+        <div class="mb-3">
+          <i class="bi bi-shield-lock text-primary" style="font-size: 3rem;"></i>
+        </div>
+        <h5 class="fw-bold mb-2">Recuperar Acceso</h5>
+        <p class="text-muted mb-3" style="font-size: 13px;">
+          Para restablecer tu contraseña, comunícate con el administrador del sistema o acude a la oficina de soporte técnico.
+        </p>
+        <button class="btn btn-primary w-100" (click)="cerrarRecuperacion()">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="mostrarRecuperacion" class="modal-backdrop fade show" (click)="cerrarRecuperacion()"></div>

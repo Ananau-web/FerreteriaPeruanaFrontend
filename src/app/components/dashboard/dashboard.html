@@ -1,0 +1,51 @@
+<div class="dashboard animate-fade-in-up">
+
+  <!-- Header de bienvenida -->
+  <div class="dash-header">
+    <div>
+      <h2 class="dash-title">
+        Bienvenido, <span class="dash-name">{{ nombreUsuario }}</span> 👋
+      </h2>
+      <p class="dash-date">
+        <i class="bi bi-calendar3 me-1"></i>
+        {{ fechaHoy }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Grid de Módulos -->
+  <div class="dash-grid">
+    <div
+      *ngFor="let m of modulos; let i = index"
+      class="dash-card"
+      [class.disabled]="!m.activo"
+      [style.animation-delay]="(i * 0.08) + 's'"
+      (click)="navegar(m)">
+
+      <!-- Barra de color superior -->
+      <div class="dash-card-accent" [style.background]="m.color"></div>
+
+      <div class="dash-card-body">
+        <!-- Ícono -->
+        <div class="dash-card-icon" [style.background]="m.color + '15'" [style.color]="m.color">
+          <i class="bi" [ngClass]="m.icono"></i>
+        </div>
+
+        <!-- Contenido -->
+        <h5 class="dash-card-title">{{ m.titulo }}</h5>
+        <p class="dash-card-desc">{{ m.descripcion }}</p>
+
+        <!-- Badge Próximamente -->
+        <div *ngIf="!m.activo" class="dash-card-badge">
+          <i class="bi bi-clock me-1"></i> Próximamente
+        </div>
+
+        <!-- Flecha si activo -->
+        <div *ngIf="m.activo" class="dash-card-arrow">
+          <i class="bi bi-arrow-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
